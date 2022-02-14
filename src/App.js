@@ -14,12 +14,8 @@ function App() {
     <Router>
         <div className="App">
         <Routes>
-          <Route path="/">
-            <StartForm></StartForm>
-          </Route>
-          <Route path="/trivia">
-            <Trivia></Trivia>
-          </Route>
+          <Route path="/" element={<StartForm />} />
+          <Route path="/trivia" element={ <Trivia />} />
         </Routes>
       </div>
     </Router>
