@@ -32,7 +32,6 @@ const StartForm = () => {
       Ingresar
     </Button>
   </Form>
-  <Trivia></Trivia>
   </>    
   )
 }
