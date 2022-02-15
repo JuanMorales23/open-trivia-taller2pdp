@@ -4,7 +4,8 @@ import NavbarGame from './NavbarGame';
 const Trivia = () => {
   return (
     <>
-      <NavbarGame / >        
+      <NavbarGame / >  
+            
     </>
   )
 }
