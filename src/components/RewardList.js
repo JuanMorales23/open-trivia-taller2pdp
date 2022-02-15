@@ -5,11 +5,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 const RewardList = () => {
     return (
         <div>
-            <Card style={{ width: '18rem' }}>
+            <Card bg="info" style={{ width: '20rem' }}>
                 <ListGroup variant="flush">
-                    <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                    <ListGroup.Item><b>10. 10000</b></ListGroup.Item>
+                    <ListGroup.Item><b>9. 9000</b></ListGroup.Item>
+                    <ListGroup.Item><b>8. 8000</b></ListGroup.Item>
+                    <ListGroup.Item><b>7. 7000</b></ListGroup.Item>
+                    <ListGroup.Item><b>6. 6000</b></ListGroup.Item>
+                    <ListGroup.Item><b>5. 5000</b></ListGroup.Item>
+                    <ListGroup.Item><b>4. 4000</b></ListGroup.Item>
+                    <ListGroup.Item><b>3. 3000</b></ListGroup.Item>
+                    <ListGroup.Item><b>1. 1000</b></ListGroup.Item>
                 </ListGroup>
             </Card>
         </div>

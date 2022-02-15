@@ -1,12 +1,14 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
 
 const StartForm = () => {
   return (
-    <>
+    <> 
+    <Modal.Dialog centered size="lg" className="container"> 
       <Form className="container">
-          <Form.Group className="col-6" size="sm">
+          <Form.Group size="lg">
             <Form.Label>Usuario</Form.Label>
             <Form.Control type="text" placeholder="Usuario" />
             <Form.Label>Categoria</Form.Label>
@@ -34,6 +36,7 @@ const StartForm = () => {
             </Link>
           </Form.Group>
       </Form>
+      </Modal.Dialog>
     </>
   );
 };

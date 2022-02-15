@@ -1,0 +1,10 @@
+
+
+RewardList {
+    border: solid;
+    color: blue;
+}
+
+p {
+    -webkit-text-stroke: 1px rgba(248, 248, 248, 0.233);
+}
