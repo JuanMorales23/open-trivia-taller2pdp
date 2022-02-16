@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<StartForm />} />
           
-          <Route exact path="/trivia/:user" element={<Trivia />} />
+          <Route exact path="/trivia/:user/:category/:difficulty" element={<Trivia />} />
         </Routes>
       </div>
     </Router>

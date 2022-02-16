@@ -4,7 +4,13 @@ import "./assets/css/Trivia.css";
 import Button from 'react-bootstrap/Button';
 import { useParams } from "react-router-dom";
 
+
 const Questions = () => {
+  let {category} = useParams();
+  console.log("categoria: "+ category);
+  let {difficulty} = useParams();
+  console.log("dificultad: "+ difficulty);
+
     const [todos, setTodos] = useState([]);
     const [i, setI] = useState(0);
     const [question, setQuestion] = useState();
@@ -17,7 +23,7 @@ const Questions = () => {
    // console.log(name);
 
   const consumeApi = async () => {
-    const url = "https://opentdb.com/api.php?amount=10&category=31&difficulty=easy&type=multiple";
+    const url = `https://opentdb.com/api.php?amount=10&category=31&difficulty=easy&type=multiple`;
     const response = await fetch(url);
     console.log(response.statusText);
     const responseJSON = await response.json();

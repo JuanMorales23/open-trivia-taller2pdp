@@ -9,11 +9,12 @@ import { useParams } from "react-router-dom";
 const Trivia = () => {
 
   let {user} = useParams();
-  console.log(`Usuario en Trivia ${user}`);
+  let {difficulty} = useParams();
+  console.log(`Parametros: ${user}; ${difficulty}`);
 
   return (
     <>
-      <NavbarGame />
+      <NavbarGame user={user} difficulty={difficulty} />
       <Table>
         <tr>
           <td >

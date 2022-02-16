@@ -11,16 +11,25 @@ const StartForm = () => {
   const difficultyRef = useRef();
   const categoryRef = useRef();
 
-  let user = "123";
-  let difficulty = "";
-  let category = "";
+  const [user, setUser] = useState();
+  const [difficulty, setDifficulty] = useState();
+  const [category, setCategory] = useState();
   console.log(triviaCategories);
 
   const assingData = () =>{
-    user = userNameRef.current.value;
-    difficulty = difficultyRef.current.value;
-    category = categoryRef.current.value;
+    //user = useRef.current.value;
+    //difficulty = difficultyRef.current.value;
+    //category = categoryRef.current.value;
 
+    //console.log(`El usuario es: ${user}`);
+    //console.log(`La Dificultad es: ${difficulty}`);
+    //console.log(`La Categoria es: ${category}`);
+  }
+
+  const handleForm = () => {
+    setUser(userNameRef.current.value);
+    setDifficulty(difficultyRef.current.value);
+    setCategory(categoryRef.current.value);
     console.log(`El usuario es: ${user}`);
     console.log(`La Dificultad es: ${difficulty}`);
     console.log(`La Categoria es: ${category}`);
@@ -32,22 +41,22 @@ const StartForm = () => {
         <Form className="container">
           <Form.Group size="lg">
             <Form.Label>Usuario</Form.Label>
-            <Form.Control type="text" placeholder="" ref={userNameRef}  />
+            <Form.Control type="text" placeholder="" ref={userNameRef} onChange={handleForm} required/>
             <Form.Label>Categoria</Form.Label>
-            <Form.Select type="text" ref={categoryRef}>
+            <Form.Select type="text" ref={categoryRef} onChange={handleForm}>
               {triviaCategories.map((category) => (
                 <option value={category.id}>{category.name}</option>
               ))}
             </Form.Select>
             <Form.Label>Dificultad</Form.Label>
-            <Form.Select className="col-2" ref={difficultyRef} >
+            <Form.Select className="col-2" ref={difficultyRef} onChange={handleForm} >
               <option value="1">Easy</option>
               <option value="2">Medium</option>
               <option value="3">Hard</option>
             </Form.Select>
             <Link
-              onClick={assingData}
-              to={`/trivia/${user}`}
+              //onClick={assingData}
+              to={`/trivia/${user}/${category}/${difficulty}`}
               variant="primary"
               type="submit"
               className="btn btn-dark"
