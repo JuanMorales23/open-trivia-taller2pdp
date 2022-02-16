@@ -4,8 +4,7 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Trivia from './components/Trivia';
 
@@ -15,7 +14,8 @@ function App() {
         <div className="App">
         <Routes>
           <Route path="/" element={<StartForm />} />
-          <Route path="/trivia" element={ <Trivia />} />
+          
+          <Route exact path="/trivia/:user" element={<Trivia />} />
         </Routes>
       </div>
     </Router>

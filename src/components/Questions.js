@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import "./assets/css/Trivia.css";
 import Button from 'react-bootstrap/Button';
+import { useParams } from "react-router-dom";
 
 const Questions = () => {
     const [todos, setTodos] = useState([]);
@@ -11,6 +12,9 @@ const Questions = () => {
     const [answer2, setAnswer2] = useState();
     const [answer3, setAnswer3] = useState();
     const [answer4, setAnswer4] = useState();
+    
+   // const {name} = useParams();
+   // console.log(name);
 
   const consumeApi = async () => {
     const url = "https://opentdb.com/api.php?amount=10&category=31&difficulty=easy&type=multiple";
