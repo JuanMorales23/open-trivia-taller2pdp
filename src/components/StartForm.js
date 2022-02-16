@@ -16,16 +16,6 @@ const StartForm = () => {
   const [category, setCategory] = useState();
   console.log(triviaCategories);
 
-  const assingData = () =>{
-    //user = useRef.current.value;
-    //difficulty = difficultyRef.current.value;
-    //category = categoryRef.current.value;
-
-    //console.log(`El usuario es: ${user}`);
-    //console.log(`La Dificultad es: ${difficulty}`);
-    //console.log(`La Categoria es: ${category}`);
-  }
-
   const handleForm = () => {
     setUser(userNameRef.current.value);
     setDifficulty(difficultyRef.current.value);
@@ -55,7 +45,6 @@ const StartForm = () => {
               <option value="3">Hard</option>
             </Form.Select>
             <Link
-              //onClick={assingData}
               to={`/trivia/${user}/${category}/${difficulty}`}
               variant="primary"
               type="submit"
