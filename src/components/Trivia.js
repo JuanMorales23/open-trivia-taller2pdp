@@ -6,8 +6,9 @@ import "./assets/css/Trivia.css";
 import Table from 'react-bootstrap/Table';
 import { useParams } from "react-router-dom";
 
-const Trivia = () => {
+const Trivia = () => {  
   const [reward, setReward] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState([]);
   let {user} = useParams();
   let {difficulty} = useParams();
   let {category} = useParams();
@@ -20,7 +21,7 @@ const Trivia = () => {
     }else if(dif === "3"){
       return "Hard";
     }
-}
+  }
 
   return (
     <>
@@ -28,10 +29,10 @@ const Trivia = () => {
       <Table>
         <tr>
           <td >
-            <Questions category={category} difficulty={handleDifficulty(difficulty)}/>
+            <Questions category={category} difficulty={handleDifficulty(difficulty)} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer}/>
           </td>
           <td>
-            <RewardList />
+            <RewardList setReward={setReward} correctAnswer={correctAnswer} />
           </td>
         </tr>
       </Table>

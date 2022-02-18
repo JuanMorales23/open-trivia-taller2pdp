@@ -2,7 +2,8 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const RewardList = () => {
+const RewardList = ({setReward, correctAnswer}) => {
+
     return (
         <div>
             <Card bg="info" style={{ width: '20rem' }}>
