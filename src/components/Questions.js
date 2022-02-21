@@ -2,22 +2,24 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import "./assets/css/Trivia.css";
 import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-
-const Questions = ({category, difficulty, correctAnswer, setCorrectAnswer}) => {    
-    const [todos, setTodos] = useState([]);
-    const [i, setI] = useState(0);
-    const [question, setQuestion] = useState();
-    const [answer1, setAnswer1] = useState();
-    const [answer2, setAnswer2] = useState();
-    const [answer3, setAnswer3] = useState();
-    const [answer4, setAnswer4] = useState();
+const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, reward, setReward, i, setI }) => {
+  let accumulated = 0;
+  const [todos, setTodos] = useState([]);
+  const [question, setQuestion] = useState();
+  const [answer1, setAnswer1] = useState();
+  const [answer2, setAnswer2] = useState();
+  const [answer3, setAnswer3] = useState();
+  const [answer4, setAnswer4] = useState();
 
   const consumeApi = async () => {
     const url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty.toLowerCase()}&type=multiple`;
-    const response = await fetch(url);    
+    const response = await fetch(url);
     const responseJSON = await response.json();
-    setTodos(responseJSON);    
+    setTodos(responseJSON);
     setQuestion(responseJSON.results[i].question);
     setAnswer1(responseJSON.results[i].incorrect_answers[0]);
     setAnswer2(responseJSON.results[i].incorrect_answers[1]);
@@ -26,26 +28,42 @@ const Questions = ({category, difficulty, correctAnswer, setCorrectAnswer}) => {
   };
 
   const handleVerifyQuestion = (answer) => {
-    if(answer === answer4){    
-      setCorrectAnswer([...correctAnswer, true]);      
-      nextQuestion();
-    }else{
-      setCorrectAnswer([...correctAnswer, false]);
-      nextQuestion();
-    } 
+    if (i < 10) {
+      if (answer === answer4) {
+        setCorrectAnswers([...correctAnswers, true]);
+        handleReward();
+        nextQuestion();
+      } else {
+        setCorrectAnswers([...correctAnswers, false]);
+        nextQuestion();
+      }
+    }
+  }
+
+  const handleReward = () => {
+    accumulated = reward + (i + 1) * 1000;
+    setReward(accumulated);
   }
 
   const nextQuestion = async () => {
-    const j = (i+1);
-    setI(j);
+    if (i < 10) {
+      const j = (i + 1);
+      setI(j);
+    } else {
+
+    }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     consumeApi();
   }, [i]);
 
   return (
     <div>
+      <Link to={`/`}>
+        <FontAwesomeIcon icon={faRightFromBracket}/>
+      </Link>
+
       <Modal.Dialog size="lg">
         <Modal.Header>
           <Modal.Title>Question</Modal.Title>
@@ -54,29 +72,29 @@ const Questions = ({category, difficulty, correctAnswer, setCorrectAnswer}) => {
           <p><b>{question}</b></p>
         </Modal.Body>
         <Modal.Footer>
-          <table  className="row d-flex justify-content-center">
+          <table className="row d-flex justify-content-center">
             <tr>
               <td>
-              <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => {handleVerifyQuestion(answer1)}}>
-                   <b>{answer1}</b>
-              </Button>
+                <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer1) }}>
+                  <b>{answer1}</b>
+                </Button>
               </td>
               <td>
-              <Button variant="info" style={{ width: "22rem" }} className="mb-2" onClick={() => {handleVerifyQuestion(answer2)}}>
-                   <b>{answer2}</b>
-              </Button>
+                <Button variant="info" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer2) }}>
+                  <b>{answer2}</b>
+                </Button>
               </td>
             </tr>
             <tr>
               <td>
-              <Button variant="warning" style={{ width: "22rem" }} className="mb-2" onClick={() => {handleVerifyQuestion(answer3)}}>
-                   <b>{answer3}</b>
-              </Button>
+                <Button variant="warning" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer3) }}>
+                  <b>{answer3}</b>
+                </Button>
               </td>
               <td>
-              <Button variant="success" style={{ width: "22rem" }} className="mb-2" onClick={() => {handleVerifyQuestion(answer4)}}>
-                   <b>{answer4}</b>
-              </Button>
+                <Button variant="success" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer4) }}>
+                  <b>{answer4}</b>
+                </Button>
               </td>
             </tr>
           </table>

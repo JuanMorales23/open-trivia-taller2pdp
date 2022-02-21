@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import level_prizes from "./assets/js/level_prizes";
 
-const RewardList = ({setReward, correctAnswer}) => {
+const RewardList = ({correctAnswers, i}) => {
+    const levelPrizes = level_prizes;
+    
+    const handleIcon = () => {
+        console.log("i: " + i);
+        let array = [];
+        array = correctAnswers.map((x) => {
+            if(x === true){
+                return (<FontAwesomeIcon icon={faCheck} />);
+            }else if(x === false){
+                return (<FontAwesomeIcon icon={faXmark} />);
+            }else{
+                return "";
+            }
+        });
+        console.log("Arreglo: " + array)
+        /*if(array[i] === true){
+            return (<FontAwesomeIcon icon={faCheck} />);
+        }else if(array[i] === false){
+            return (<FontAwesomeIcon icon={faXmark} />);
+        }else{
 
+        }*/
+    }
+/*
+    useEffect(() => {
+        console.log("Cambió")
+    }, [correctAnswers]);
+*/    
     return (
         <div>
             <Card bg="info" style={{ width: '20rem' }}>
                 <ListGroup variant="flush">
-                    <ListGroup.Item><b>10. $10000</b></ListGroup.Item>
-                    <ListGroup.Item><b>9. $9000</b></ListGroup.Item>
-                    <ListGroup.Item><b>8. $8000</b></ListGroup.Item>
-                    <ListGroup.Item><b>7. $7000</b></ListGroup.Item>
-                    <ListGroup.Item><b>6. $6000</b></ListGroup.Item>
-                    <ListGroup.Item><b>5. $5000</b></ListGroup.Item>
-                    <ListGroup.Item><b>4. $4000</b></ListGroup.Item>
-                    <ListGroup.Item><b>3. $3000</b></ListGroup.Item>
-                    <ListGroup.Item><b>2. $2000</b></ListGroup.Item>
-                    <ListGroup.Item><b>1. $1000</b></ListGroup.Item>
+                    {levelPrizes.map((list) => <ListGroup.Item key={list.id}><b>{list.id}. {list.prize} {handleIcon()}</b></ListGroup.Item>)}                    
                 </ListGroup>
             </Card>
         </div>

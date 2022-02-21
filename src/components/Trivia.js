@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom";
 
 const Trivia = () => {  
   const [reward, setReward] = useState(0);
-  const [correctAnswer, setCorrectAnswer] = useState([]);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [i, setI] = useState(0);
   let {user} = useParams();
   let {difficulty} = useParams();
   let {category} = useParams();
@@ -23,16 +24,20 @@ const Trivia = () => {
     }
   }
 
+
   return (
     <>
       <NavbarGame user={user} difficulty={handleDifficulty(difficulty)} reward={reward}/>
       <Table>
         <tr>
           <td >
-            <Questions category={category} difficulty={handleDifficulty(difficulty)} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer}/>
+            <Questions category={category} difficulty={handleDifficulty(difficulty)} 
+            correctAnswers={correctAnswers} setCorrectAnswers={setCorrectAnswers}
+            reward={reward} setReward={setReward}
+            i={i} setI={setI} />
           </td>
           <td>
-            <RewardList setReward={setReward} correctAnswer={correctAnswer} />
+            <RewardList correctAnswers={correctAnswers} i={i} />
           </td>
         </tr>
       </Table>
