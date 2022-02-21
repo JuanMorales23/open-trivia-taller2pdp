@@ -5,9 +5,15 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import EndGame from "./EndGame";
+import Timer from "./Timer";
+
 
 const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, reward, setReward, i, setI }) => {
   let accumulated = 0;
+  const [restart, setRestart] = useState(false);
+  const [pause, setPause] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [todos, setTodos] = useState([]);
   const [question, setQuestion] = useState();
   const [answer1, setAnswer1] = useState();
@@ -32,41 +38,55 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
       if (answer === answer4) {
         setCorrectAnswers([...correctAnswers, true]);
         handleReward();
-        nextQuestion();
+        setPause(true);        
+        setTimeout(() => {
+          nextQuestion();  
+          setRestart(!restart);
+          setPause(false);
+        }, 5000);
+        
       } else {
         setCorrectAnswers([...correctAnswers, false]);
-        nextQuestion();
+        handleEndGame();
+        setPause(true);
       }
     }
   }
 
   const handleReward = () => {
     accumulated = reward + (i + 1) * 1000;
-    setReward(accumulated);
+    setReward(accumulated);    
+  }
+
+  const handleEndGame = () => {
+    setI(10);
+    setVisible(true);
   }
 
   const nextQuestion = async () => {
     if (i < 10) {
       const j = (i + 1);
-      setI(j);
+      setI(j);      
     } else {
 
     }
   };
 
   useEffect(() => {
-    consumeApi();
+    consumeApi();    
   }, [i]);
 
   return (
     <div>
       <Link to={`/`}>
-        <FontAwesomeIcon icon={faRightFromBracket}/>
+        <FontAwesomeIcon icon={faRightFromBracket} size="2x" />
       </Link>
 
       <Modal.Dialog size="lg">
-        <Modal.Header>
-          <Modal.Title>Question</Modal.Title>
+        <Modal.Header> 
+          <Modal.Title>
+            <Timer restart={restart} pause={pause} />
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p><b>{question}</b></p>
@@ -75,7 +95,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
           <table className="row d-flex justify-content-center">
             <tr>
               <td>
-                <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer1) }}>
+                <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer1)() }}>
                   <b>{answer1}</b>
                 </Button>
               </td>
@@ -83,7 +103,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
                 <Button variant="info" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer2) }}>
                   <b>{answer2}</b>
                 </Button>
-              </td>
+              </td> 
             </tr>
             <tr>
               <td>
@@ -100,6 +120,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
           </table>
         </Modal.Footer>
       </Modal.Dialog>
+      <EndGame visible={visible} i={i} accumulated={accumulated}/>
     </div>
   );
 };

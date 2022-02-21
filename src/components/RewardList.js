@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,10 +8,9 @@ import level_prizes from "./assets/js/level_prizes";
 const RewardList = ({correctAnswers, i}) => {
     const levelPrizes = level_prizes;
     
-    const handleIcon = () => {
-        console.log("i: " + i);
+    const handleIcon = () => {    
         let array = [];
-        array = correctAnswers.map((x) => {
+        /*array = correctAnswers.map((x) => {
             if(x === true){
                 return (<FontAwesomeIcon icon={faCheck} />);
             }else if(x === false){
@@ -19,21 +18,16 @@ const RewardList = ({correctAnswers, i}) => {
             }else{
                 return "";
             }
-        });
-        console.log("Arreglo: " + array)
-        /*if(array[i] === true){
+        });*/        
+        if(array[i] === true){
             return (<FontAwesomeIcon icon={faCheck} />);
         }else if(array[i] === false){
             return (<FontAwesomeIcon icon={faXmark} />);
         }else{
 
-        }*/
+        }
     }
-/*
-    useEffect(() => {
-        console.log("Cambió")
-    }, [correctAnswers]);
-*/    
+
     return (
         <div>
             <Card bg="info" style={{ width: '20rem' }}>
