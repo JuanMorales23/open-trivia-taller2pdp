@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const Timer = ({restart, pause}) => {
+const Timer = ({restart, pause, setI, setVisible}) => {
     const [num, setNum] = useState(30);    
     let intervalRef = useRef();
 
@@ -24,11 +24,20 @@ const Timer = ({restart, pause}) => {
         }
     }, [pause]);
 
+    useEffect(() => {
+        if(num === 0){
+            clearInterval(intervalRef.current);
+            setI(10);
+            setVisible(true);
+        }else{            
+
+        }
+    }, [num]);
 
     return (
-        <div>
+        <>
             {num}                        
-        </div>
+        </>
     );
 }
 

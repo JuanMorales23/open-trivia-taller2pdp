@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
 
-const EndGame = ({visible, i, accumulated}) => {
+const EndGame = ({visible, i, reward}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -18,9 +18,7 @@ const EndGame = ({visible, i, accumulated}) => {
                     <Modal.Title><b>Fin del juego </b></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <b>Respuestas correstas: $ {i}</b>
-                    <br/>
-                    <b>Acumulado: $ {accumulated}</b>
+                    <b>Acumulado: $ {reward}</b>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>

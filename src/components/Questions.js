@@ -38,7 +38,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
       if (answer === answer4) {
         setCorrectAnswers([...correctAnswers, true]);
         handleReward();
-        setPause(true);        
+        setPause(true);                 
         setTimeout(() => {
           nextQuestion();  
           setRestart(!restart);
@@ -85,7 +85,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
       <Modal.Dialog size="lg">
         <Modal.Header> 
           <Modal.Title>
-            <Timer restart={restart} pause={pause} />
+            <b>Tiempo: <Timer restart={restart} pause={pause} setI={setI} setVisible={setVisible} />s</b>            
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -120,7 +120,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
           </table>
         </Modal.Footer>
       </Modal.Dialog>
-      <EndGame visible={visible} i={i} accumulated={accumulated}/>
+      <EndGame visible={visible} i={i} reward={reward}/>
     </div>
   );
 };
