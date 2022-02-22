@@ -51,6 +51,8 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
   }
 
   const handleVerifyQuestion = (answer) => {
+    console.log("ROjo: " + answer);
+    console.log("Buena: " + answer4);
     if (i < 10) {
       if (answer === answer4) {
         setCorrectAnswers([...correctAnswers, true]);
@@ -111,25 +113,25 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
           <table className="row d-flex justify-content-center">
             <tr>
               <td>
-                <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer1)() }}>
-                  <b>{options[1]}</b>
+                <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(options[0])() }}>
+                  <b>{options[0]}</b>
                 </Button>
               </td>
               <td>
-                <Button variant="info" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer2) }}>
-                  <b>{options[2]}</b>
+                <Button variant="info" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(options[1]) }}>
+                  <b>{options[1]}</b>
                 </Button>
               </td> 
             </tr>
             <tr>
               <td>
-                <Button variant="warning" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer3) }}>
-                  <b>{options[3]}</b>
+                <Button variant="warning" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(options[2]) }}>
+                  <b>{options[2]}</b>
                 </Button>
               </td>
               <td>
-                <Button variant="success" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer4) }}>
-                  <b>{options[4]}</b>
+                <Button variant="success" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(options[3]) }}>
+                  <b>{options[3]}</b>
                 </Button>
               </td>
             </tr>
