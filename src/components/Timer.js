@@ -6,11 +6,6 @@ const Timer = ({restart, pause, setI, setVisible}) => {
 
     const decreaseNum = () => setNum((prev) => prev - 1);
 
-    /*useEffect(() => {
-            intervalRef.current = setInterval(decreaseNum, 1000);
-            return () => clearInterval(intervalRef.current);
-    }, []);*/
-
     useEffect(() => {       
         setNum(30);
     }, [restart]);
@@ -29,8 +24,6 @@ const Timer = ({restart, pause, setI, setVisible}) => {
             clearInterval(intervalRef.current);
             setI(10);
             setVisible(true);
-        }else{            
-
         }
     }, [num]);
 

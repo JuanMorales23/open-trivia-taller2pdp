@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import trivia_categories from "./assets/js/trivia_categories";
+import Button from 'react-bootstrap/Button';
 
 const StartForm = () => {
   const triviaCategories = trivia_categories;
@@ -25,6 +26,8 @@ const StartForm = () => {
     console.log(`La Categoria es: ${category}`);
   }
 
+
+
   return (
     <>
       <Modal.Dialog centered size="lg" className="container">
@@ -44,6 +47,8 @@ const StartForm = () => {
               <option value="2">Medium</option>
               <option value="3">Hard</option>
             </Form.Select>
+
+ 
             <Link
               to={`/trivia/${user}/${category}/${difficulty}`}
               variant="primary"

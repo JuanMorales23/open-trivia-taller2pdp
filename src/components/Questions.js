@@ -10,7 +10,7 @@ import Timer from "./Timer";
 
 
 const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, reward, setReward, i, setI }) => {
-  let accumulated = 0;
+  let accumulated = 0;  
   const [restart, setRestart] = useState(false);
   const [pause, setPause] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -20,18 +20,35 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
   const [answer2, setAnswer2] = useState();
   const [answer3, setAnswer3] = useState();
   const [answer4, setAnswer4] = useState();
+  const [options, setOptions] = useState([]);
 
   const consumeApi = async () => {
     const url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty.toLowerCase()}&type=multiple`;
     const response = await fetch(url);
     const responseJSON = await response.json();
+    let arreglo = [];
     setTodos(responseJSON);
     setQuestion(responseJSON.results[i].question);
     setAnswer1(responseJSON.results[i].incorrect_answers[0]);
+    arreglo[0] = responseJSON.results[i].incorrect_answers[0];    
     setAnswer2(responseJSON.results[i].incorrect_answers[1]);
+    arreglo[1] = responseJSON.results[i].incorrect_answers[1];  
     setAnswer3(responseJSON.results[i].incorrect_answers[2]);
-    setAnswer4(responseJSON.results[i].correct_answer);
+    arreglo[2] = responseJSON.results[i].incorrect_answers[2];  
+    setAnswer4(responseJSON.results[i].correct_answer);  
+    arreglo[3] = responseJSON.results[i].correct_answer;    
+    randomizeOptions(arreglo);
   };
+
+  const randomizeOptions =(a) => {
+    console.log(a);
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    console.log(a);
+    setOptions(a);
+  }
 
   const handleVerifyQuestion = (answer) => {
     if (i < 10) {
@@ -81,7 +98,6 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
       <Link to={`/`}>
         <FontAwesomeIcon icon={faRightFromBracket} size="2x" />
       </Link>
-
       <Modal.Dialog size="lg">
         <Modal.Header> 
           <Modal.Title>
@@ -96,24 +112,24 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
             <tr>
               <td>
                 <Button variant='danger' style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer1)() }}>
-                  <b>{answer1}</b>
+                  <b>{options[1]}</b>
                 </Button>
               </td>
               <td>
                 <Button variant="info" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer2) }}>
-                  <b>{answer2}</b>
+                  <b>{options[2]}</b>
                 </Button>
               </td> 
             </tr>
             <tr>
               <td>
                 <Button variant="warning" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer3) }}>
-                  <b>{answer3}</b>
+                  <b>{options[3]}</b>
                 </Button>
               </td>
               <td>
                 <Button variant="success" style={{ width: "22rem" }} className="mb-2" onClick={() => { handleVerifyQuestion(answer4) }}>
-                  <b>{answer4}</b>
+                  <b>{options[4]}</b>
                 </Button>
               </td>
             </tr>
