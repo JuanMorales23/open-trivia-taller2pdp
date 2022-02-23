@@ -26,8 +26,6 @@ const StartForm = () => {
     console.log(`La Categoria es: ${category}`);
   }
 
-
-
   return (
     <>
       <Modal.Dialog centered size="lg" className="container">

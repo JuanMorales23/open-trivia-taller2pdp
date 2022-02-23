@@ -11,8 +11,8 @@ const Trivia = () => {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [i, setI] = useState(0);
   let {user} = useParams();
-  let {difficulty} = useParams();
   let {category} = useParams();
+  let {difficulty} = useParams();
   
   const handleDifficulty = (dif) =>{
     if(dif === "1"){
