@@ -84,7 +84,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
   }
 
   const handleEndGame = () => {
-    setI(10);
+    //npmsetI(10);
     disableAllButtons();
     setVisible(true);
   }
