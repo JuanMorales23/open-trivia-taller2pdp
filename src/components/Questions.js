@@ -178,7 +178,7 @@ const Questions = ({ category, difficulty, correctAnswers, setCorrectAnswers, re
   return (
     <div>      
       <Link to={`/`}>
-        <FontAwesomeIcon icon={faRightFromBracket} size="2x" className="row justify-content-start"/>      
+        <FontAwesomeIcon icon={faRightFromBracket} size="2x" className="row justify-content-left"/>      
       </Link>
       <Modal.Dialog size="lg">
         <Modal.Header>

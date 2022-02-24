@@ -61,16 +61,15 @@ const RewardList = ({ correctAnswers, i }) => {
                     <tbody>
                         {levelPrizes.map((x) => {
                             console.log("first")
-                            if(correctAnswers[x] === true){
-                                x.icon = <FontAwesomeIcon icon={faCheck} />
+                            if(x.id === i){
                                 return (
-                                    <tr >
+                                    <tr>
                                         <td>
                                             <b>{x.id}. </b>
                                         </td>
                                         <td>
-                                            <b>{x.prize}</b>                                            
-                                            {x.icon}
+                                            <b>{x.prize}    </b>                                            
+                                            {x.icon = <FontAwesomeIcon icon={faCheck} className="greenColor"/>}
                                         </td>                                        
                                     </tr>
                                 );

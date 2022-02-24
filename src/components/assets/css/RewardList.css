@@ -1,3 +1,7 @@
-coloredRow {
+.coloredRow {
     background: rgb(20, 162, 228);
+}
+
+.greenColor {
+    color: green;
 }
